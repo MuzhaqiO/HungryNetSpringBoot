@@ -1,6 +1,7 @@
 package com.hungerNet.Hunger.Net.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hungerNet.Hunger.Net.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,16 +30,12 @@ public class User {
     private UUID userId;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
-    @JsonIgnore
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_restaurants",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "restaurantId"))
-    private List<Restaurant> restaurants = new ArrayList<>();
+    @OneToOne
+    private Restaurant restaurant;
 
-    @ManyToOne
-    @JoinColumn(name = "user_role_id", referencedColumnName = "roleId")
-    private Role roles;
+    @OneToMany(mappedBy = "users")
+    private List<Order> orders = new ArrayList<>();
 }

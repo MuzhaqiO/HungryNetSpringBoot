@@ -1,6 +1,6 @@
 package com.hungerNet.Hunger.Net.service;
 
-import com.hungerNet.Hunger.Net.dto.RestaurantDTO;
+import com.hungerNet.Hunger.Net.dto.restaurantDTO.RestaurantDTO;
 import com.hungerNet.Hunger.Net.mapper.RestaurantMapper;
 import com.hungerNet.Hunger.Net.model.Restaurant;
 import com.hungerNet.Hunger.Net.repository.RestaurantRepo;

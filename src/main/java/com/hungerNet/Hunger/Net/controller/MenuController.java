@@ -1,6 +1,7 @@
 package com.hungerNet.Hunger.Net.controller;
 
-import com.hungerNet.Hunger.Net.dto.MenuDTO;
+import com.hungerNet.Hunger.Net.dto.menuDTO.MenuDTO;
+import com.hungerNet.Hunger.Net.dto.menuDTO.MenuListDTO;
 import com.hungerNet.Hunger.Net.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +36,14 @@ public class MenuController {
     @DeleteMapping("delete/{menuId}")
     public void deleteMenu(@PathVariable UUID menuId) {
         menuService.deleteMenu(menuId);
+    }
+    @GetMapping("getMenusByRestaurant/{restaurantId}")
+    public ResponseEntity<List<MenuDTO>> getMenusByRestaurant(@PathVariable UUID restaurantId) {
+        return ResponseEntity.ok(menuService.getMenusByRestaurant(restaurantId));
+    }
+
+    @PostMapping("getMenusByRestaurantAndUser")
+    public ResponseEntity<List<MenuDTO>> getMenusByRestaurantAndUser(@RequestBody MenuListDTO menuListDTO) {
+        return ResponseEntity.ok(menuService.getMenusByRestaurantAndUser(menuListDTO));
     }
 }

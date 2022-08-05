@@ -1,4 +1,4 @@
-package com.hungerNet.Hunger.Net.dto;
+package com.hungerNet.Hunger.Net.dto.restaurantDTO;
 
 import lombok.Data;
 

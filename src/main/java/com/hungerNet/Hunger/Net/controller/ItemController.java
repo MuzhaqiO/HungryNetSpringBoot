@@ -1,6 +1,7 @@
 package com.hungerNet.Hunger.Net.controller;
 
-import com.hungerNet.Hunger.Net.dto.ItemDTO;
+import com.hungerNet.Hunger.Net.dto.itemDTO.ItemDTO;
+import com.hungerNet.Hunger.Net.dto.menuDTO.MenuDTO;
 import com.hungerNet.Hunger.Net.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,10 @@ public class ItemController {
     public ResponseEntity<List<ItemDTO>> findAllItems() {
         return ResponseEntity.ok(itemService.getItems());
     }
+    @GetMapping("getByActiveMenu/{menuId}")
+    public ResponseEntity<List<ItemDTO>> getByActiveMenu(@PathVariable UUID menuId) {
+        return ResponseEntity.ok(itemService.getItemsByActiveMenu(menuId));
+    }
     @GetMapping("itemId/{itemId}")
     public ResponseEntity<ItemDTO> getItemById(@PathVariable UUID itemId) {
         return ResponseEntity.ok(itemService.getItemById(itemId));
@@ -35,5 +40,9 @@ public class ItemController {
     @DeleteMapping("delete/{itemId}")
     public void deleteItem(@PathVariable UUID itemId) {
         itemService.deleteItem(itemId);
+    }
+    @GetMapping("getItemsByMenu/{menuId}")
+    public ResponseEntity<List<ItemDTO>> getItemsByMenu(@PathVariable UUID menuId) {
+        return ResponseEntity.ok(itemService.getItemsByMenu(menuId));
     }
 }

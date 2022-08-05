@@ -1,6 +1,7 @@
 package com.hungerNet.Hunger.Net.controller;
 
-import com.hungerNet.Hunger.Net.dto.RestaurantDTO;
+import com.hungerNet.Hunger.Net.dto.menuDTO.MenuDTO;
+import com.hungerNet.Hunger.Net.dto.restaurantDTO.RestaurantDTO;
 import com.hungerNet.Hunger.Net.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
 package com.hungerNet.Hunger.Net.model;
 
+import com.hungerNet.Hunger.Net.enums.MenuNames;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -26,8 +28,11 @@ public class Menu {
     @Column(name = "menuId")
     @Type(type = "org.hibernate.type.PostgresUUIDType")
     private UUID menuId;
-    private String menuName;
+    @Enumerated(EnumType.STRING)
+    private MenuNames menuName;
     private Boolean menuStatus;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_menu_id", referencedColumnName = "restaurantId")
