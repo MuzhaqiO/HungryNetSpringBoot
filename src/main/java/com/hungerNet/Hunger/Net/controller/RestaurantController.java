@@ -25,6 +25,10 @@ public class RestaurantController {
     public ResponseEntity<RestaurantDTO> getRestaurantById(@PathVariable UUID restaurantId) {
         return ResponseEntity.ok(restaurantService.getRestaurantById(restaurantId));
     }
+    @GetMapping("restaurantName/{restaurantName}")
+    public ResponseEntity<RestaurantDTO> getRestaurantByName(@PathVariable String restaurantName) {
+        return ResponseEntity.ok(restaurantService.getByRestaurantName(restaurantName));
+    }
     @PostMapping("addNewRestaurant")
     public ResponseEntity<RestaurantDTO> createRestaurant(@RequestBody RestaurantDTO restaurantDTO){
         return ResponseEntity.ok(restaurantService.addNewRestaurant(restaurantDTO));

@@ -25,6 +25,9 @@ public class ItemService {
     public ItemDTO getItemById(UUID itemId) {
         return itemMapper.toDTO(itemRepo.getReferenceById(itemId));
     }
+    public List<ItemDTO> getItemByOrderId(UUID orderId) {
+        return itemMapper.toDTOs(itemRepo.getItemsByOrdersOrderId(orderId));
+    }
     public List<ItemDTO> getItems() {
         return itemMapper.toDTOs(itemRepo.findAll());
     }

@@ -25,6 +25,10 @@ public class ItemController {
     public ResponseEntity<List<ItemDTO>> getByActiveMenu(@PathVariable UUID menuId) {
         return ResponseEntity.ok(itemService.getItemsByActiveMenu(menuId));
     }
+    @GetMapping("getByOrder/{orderId}")
+    public ResponseEntity<List<ItemDTO>> getByOrder(@PathVariable UUID orderId) {
+        return ResponseEntity.ok(itemService.getItemByOrderId(orderId));
+    }
     @GetMapping("itemId/{itemId}")
     public ResponseEntity<ItemDTO> getItemById(@PathVariable UUID itemId) {
         return ResponseEntity.ok(itemService.getItemById(itemId));

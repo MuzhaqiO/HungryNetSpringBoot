@@ -27,6 +27,7 @@ public interface UserMapper {
 
     List<RegisterUserDTO> toDTOsClient(List<User> users);
 
+
     User toModelClient(RegisterUserDTO registerUserDTO);
 
     List<User> ToModelsClient(List<RegisterUserDTO> registerUserDTOs);

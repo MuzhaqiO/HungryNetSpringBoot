@@ -65,4 +65,11 @@ public class OrderService {
         order.setOrderStatus(OrderStatus.valueOf(orderChangeStatusDTO.getStatus()));
         orderRepo.save(order);
     }
+
+    public List<OrderDTO> getOrdersByUser(UUID userId) {
+        return orderMapper.toDTOs(orderRepo.getOrdersByUser(userId));
+    }
+    public List<OrderDTO> getOrdersByRestaurant(UUID restaurantId) {
+        return orderMapper.toDTOs(orderRepo.getOrdersByRestaurant(restaurantId));
+    }
 }

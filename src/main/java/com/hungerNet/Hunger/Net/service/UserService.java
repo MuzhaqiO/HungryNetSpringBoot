@@ -1,8 +1,8 @@
 package com.hungerNet.Hunger.Net.service;
 
+import com.hungerNet.Hunger.Net.dto.itemDTO.ItemDTO;
 import com.hungerNet.Hunger.Net.dto.userDTO.RegisterUserDTO;
 import com.hungerNet.Hunger.Net.dto.userDTO.UserDTO;
-import com.hungerNet.Hunger.Net.enums.Roles;
 import com.hungerNet.Hunger.Net.mapper.UserMapper;
 import com.hungerNet.Hunger.Net.model.User;
 import com.hungerNet.Hunger.Net.repository.UserRepo;
@@ -26,15 +26,15 @@ public class UserService {
     public UserDTO getUserByUsername(String username) {
         return userMapper.toDTO(userRepo.getByUsername(username));
     }
-    public List<UserDTO> getUsers() {
-        return userMapper.toDTOs(userRepo.getUsers());
-    }
-    public List<UserDTO> getClientUsers() {
-        return userMapper.toDTOs(userRepo.getClientUsers());
-    }
-    public List<UserDTO> getManagerUsers() {
-        return userMapper.toDTOs(userRepo.getManagerUsers());
-    }
+//    public List<UserDTO> getUsers() {
+//        return userMapper.toDTOs(userRepo.getUsers());
+//    }
+//    public List<UserDTO> getClientUsers() {
+//        return userMapper.toDTOs(userRepo.getClientUsers());
+//    }
+//    public List<UserDTO> getManagerUsers() {
+//        return userMapper.toDTOs(userRepo.getManagerUsers());
+//    }
     public UserDTO createUser(UserDTO userDTO){
         User createdUser = userMapper.toModel(userDTO);
         if (userDTO.getRestaurantId() == null) {
@@ -45,7 +45,6 @@ public class UserService {
     }
     public UserDTO register(RegisterUserDTO registerUserDTO){
         User createdUser = userMapper.toModelClient(registerUserDTO);
-        createdUser.setRole(Roles.CLIENT);
         userRepo.save(createdUser);
         return userMapper.toDTO(createdUser);
     }
@@ -56,5 +55,8 @@ public class UserService {
     }
     public void deleteUser(UUID userId) {
         userRepo.deleteById(userId);
+    }
+    public List<UserDTO> getUserByRole(UUID roleId) {
+        return userMapper.toDTOs(userRepo.getUserByRolesRoleId(roleId));
     }
 }

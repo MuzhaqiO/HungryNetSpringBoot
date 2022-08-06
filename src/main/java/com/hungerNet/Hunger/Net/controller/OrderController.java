@@ -54,6 +54,14 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> getOrderByDate() {
         return ResponseEntity.ok(orderService.getOrderByDate());
     }
+    @GetMapping("getOrderByUser/{userId}")
+    public ResponseEntity<List<OrderDTO>> getOrderByUser(@PathVariable UUID userId) {
+        return ResponseEntity.ok(orderService.getOrdersByUser(userId));
+    }
+    @GetMapping("getOrderByRestaurant/{restaurantId}")
+    public ResponseEntity<List<OrderDTO>> getOrderByRestaurant(@PathVariable UUID restaurantId) {
+        return ResponseEntity.ok(orderService.getOrdersByRestaurant(restaurantId));
+    }
     @PostMapping("addNewOrder")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO){
         return ResponseEntity.ok(orderService.addNewOrder(orderDTO));

@@ -10,4 +10,6 @@ import java.util.UUID;
 @Repository
 public interface ItemRepo extends JpaRepository<Item, UUID> {
     List<Item> getItemsByMenusMenuId(UUID menuId);
+
+    List<Item> getItemsByOrdersOrderId(UUID orderId);
 }

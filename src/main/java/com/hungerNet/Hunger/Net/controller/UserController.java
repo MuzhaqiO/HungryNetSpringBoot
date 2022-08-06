@@ -16,18 +16,18 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("getAll")
-    public ResponseEntity<List<UserDTO>> findAllUsers() {
-        return ResponseEntity.ok(userService.getUsers());
-    }
-    @GetMapping("getAllClients")
-    public ResponseEntity<List<UserDTO>> findAllClientUsers() {
-        return ResponseEntity.ok(userService.getClientUsers());
-    }
-    @GetMapping("getAllManagers")
-    public ResponseEntity<List<UserDTO>> findAllManagerUsers() {
-        return ResponseEntity.ok(userService.getManagerUsers());
-    }
+//    @GetMapping("getAll")
+//    public ResponseEntity<List<UserDTO>> findAllUsers() {
+//        return ResponseEntity.ok(userService.getUsers());
+//    }
+//    @GetMapping("getAllClients")
+//    public ResponseEntity<List<UserDTO>> findAllClientUsers() {
+//        return ResponseEntity.ok(userService.getClientUsers());
+//    }
+//    @GetMapping("getAllManagers")
+//    public ResponseEntity<List<UserDTO>> findAllManagerUsers() {
+//        return ResponseEntity.ok(userService.getManagerUsers());
+//    }
     @GetMapping("userId/{userId}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable UUID userId) {
         return ResponseEntity.ok(userService.getUserById(userId));

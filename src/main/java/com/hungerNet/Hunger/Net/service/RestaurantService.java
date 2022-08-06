@@ -20,6 +20,9 @@ public class RestaurantService {
     public RestaurantDTO getRestaurantById(UUID restaurantId) {
         return restaurantMapper.toDTO(restaurantRepo.getReferenceById(restaurantId));
     }
+    public RestaurantDTO getByRestaurantName(String restaurantName) {
+        return restaurantMapper.toDTO(restaurantRepo.getByRestaurantName(restaurantName));
+    }
     public List<RestaurantDTO> getRestaurants() {
         return restaurantMapper.toDTOs(restaurantRepo.findAll());
     }
