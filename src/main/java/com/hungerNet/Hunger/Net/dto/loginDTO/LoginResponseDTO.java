@@ -11,5 +11,5 @@ public class LoginResponseDTO {
     private String accessToken;
     private String tokenType;
     private UserEntityResponseDTO user;
-    private List<String> roles;
+    private String role2;
 }

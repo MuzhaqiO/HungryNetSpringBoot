@@ -25,7 +25,7 @@ public class Role {
     @Column(name = "roleId")
     @Type(type = "org.hibernate.type.PostgresUUIDType")
     private UUID roleId;
-    private String roleName;
+    private String name;
 
     @ManyToMany(mappedBy = "roles")
     List<User> users;

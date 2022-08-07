@@ -17,12 +17,15 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private List<String> roles;
 
+    private String role2;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         final Collection<GrantedAuthority> authorities = new ArrayList<>();
-        this.roles.forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority(role));
-        });
+//        this.roles.forEach(role -> {
+//            authorities.add(new SimpleGrantedAuthority(role));
+//        });
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + role2));
         return authorities;
     }
 

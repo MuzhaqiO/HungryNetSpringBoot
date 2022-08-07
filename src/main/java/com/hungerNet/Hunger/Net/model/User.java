@@ -1,5 +1,6 @@
 package com.hungerNet.Hunger.Net.model;
 
+import com.hungerNet.Hunger.Net.enums.RoleName2;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,8 @@ public class User {
     private UUID userId;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private RoleName2 roleName2;
 
     @OneToOne
     private Restaurant restaurant;
