@@ -1,6 +1,5 @@
 package com.hungerNet.Hunger.Net.security;
 
-import com.hungerNet.Hunger.Net.model.Role;
 import com.hungerNet.Hunger.Net.model.User;
 import com.hungerNet.Hunger.Net.repository.UserRepo;
 import lombok.SneakyThrows;
@@ -27,12 +26,10 @@ public class UserDetailsService implements org.springframework.security.core.use
             throw new UsernameNotFoundException("Bad credentials");
         }
 
-//        final HttpServletRequest request = getRequest();
         MyUserDetails userDetail = new MyUserDetails();
         userDetail.setUsername(username);
         userDetail.setPassword(user.getPassword());
-//        userDetail.setRoles(user.getRoles().stream().map(Role::getName).toList());
-        userDetail.setRole2(user.getRoleName2().toString());
+        userDetail.setRole(user.getRoleName().toString());
         return userDetail;
     }
 

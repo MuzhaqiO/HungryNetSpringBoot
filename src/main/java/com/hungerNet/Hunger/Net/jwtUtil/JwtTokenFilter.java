@@ -46,10 +46,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = null;
             try {
-                // load user data from database, throws UsernameNotFoundException if no user with username found
                 userDetails = userDetailsService.loadUserByUsername(username);
 
-                // check token validity and set security context
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                     final UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

@@ -23,38 +23,13 @@ public class OrderService {
     public OrderDTO getOrderById(UUID orderId) {
         return orderMapper.toDTO(orderRepo.getReferenceById(orderId));
     }
-    public List<OrderDTO> getOrderByDate() {
-        return orderMapper.toDTOs(orderRepo.findAllByOrderByOrderDate());
-    }
-    public List<OrderDTO> getOrders() {
-        return orderMapper.toDTOs(orderRepo.findAll());
-    }
-    public List<OrderDTO> getCreatedOrders(){
-        return orderMapper.toDTOs(orderRepo.getCreatedOrders());
-    }
-    public List<OrderDTO> getApprovedOrders() {
-        return orderMapper.toDTOs(orderRepo.getApprovedOrders());
-    }
-    public List<OrderDTO> getRejectedOrders() {
-        return orderMapper.toDTOs(orderRepo.getRejectedOrders());
-    }
-    public List<OrderDTO> getPreparedOrders() {
-        return orderMapper.toDTOs(orderRepo.getPreparedOrders());
-    }
-    public List<OrderDTO> getWaitingOrders() {
-        return orderMapper.toDTOs(orderRepo.getWaitingOrders());
-    }
-    public List<OrderDTO> getDeliveredOrders() {
-        return orderMapper.toDTOs(orderRepo.getDeliveredOrders());
-    }
+    public List<OrderDTO> getOrdersByStatus(OrderStatus orderStatus){return orderMapper.toDTOs(orderRepo.getCreatedOrderStatus(orderStatus));}
     public OrderDTO addNewOrder(OrderDTO orderDTO){
-        Order createdOrder = orderRepo.save(orderMapper.toModel(orderDTO));
+        Order createdOrder = orderMapper.toModel(orderDTO);
+        createdOrder.setOrderStatus(OrderStatus.CREATED);
+        createdOrder.setOrderDate(LocalDate.now());
+        orderRepo.save(createdOrder);
         return orderMapper.toDTO(createdOrder);
-    }
-    public OrderDTO updateOrder(OrderDTO orderDTO) {
-        Order order = orderMapper.toModel(orderDTO);
-        orderRepo.save(order);
-        return orderMapper.toDTO(order);
     }
     public void deleteOrder(UUID orderId) {
         orderRepo.deleteById(orderId);

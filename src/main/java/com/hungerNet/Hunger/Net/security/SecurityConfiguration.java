@@ -104,46 +104,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-
-//    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//
-//        http.cors().and().csrf().disable();
-//
-//        http
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and();
-//
-//        http.authorizeRequests()
-//                .antMatchers("/v2/api-docs",
-//                "/configuration/ui",
-//                "/swagger-resources/**",
-//                "/configuration/security",
-//                "/swagger-ui.html",
-//                "/webjars/**",
-//                        "/api/auth/**")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and().formLogin().disable()
-//                .httpBasic().disable()
-//                .addFilterBefore(
-//                        jwtTokenFilter,
-//                        UsernamePasswordAuthenticationFilter.class
-//                );
-//        //        http
-////                .exceptionHandling()
-////                .authenticationEntryPoint(
-////                        (request, response, ex) -> {
-////                            response.sendError(
-////                                    HttpServletResponse.SC_UNAUTHORIZED,
-////                                    ex.getMessage()
-////                            );
-////                        }
-////                )
-////                .and();
-//
-//        return http.build();
-//    }
 }

@@ -12,12 +12,13 @@ import java.util.UUID;
 public interface UserRepo extends JpaRepository<User, UUID> {
 
     User getByUsername(String username);
-    @Query("SELECT u FROM User u WHERE " + "u.roleName2 != com.hungerNet.Hunger.Net.enums.RoleName2.ADMIN")
+    User findByUsername(String username);
+    @Query("SELECT u FROM User u WHERE " + "u.roleName != com.hungerNet.Hunger.Net.enums.RoleName.ADMIN")
     List<User> getUsers();
-//
-//    @Query("SELECT u FROM User u WHERE " + "u.role = com.hungerNet.Hunger.Net.enums.Roles.CLIENT")
-//    List<User> getClientUsers();
-//
-//    @Query("SELECT u FROM User u WHERE " + "u.role = com.hungerNet.Hunger.Net.enums.Roles.RESTAURANT_MANAGER")
-//    List<User> getManagerUsers();
+
+    @Query("SELECT u FROM User u WHERE " + "u.roleName = com.hungerNet.Hunger.Net.enums.RoleName.CLIENT")
+    List<User> getClientUsers();
+
+    @Query("SELECT u FROM User u WHERE " + "u.roleName = com.hungerNet.Hunger.Net.enums.RoleName.RESTAURANT_MANAGER")
+    List<User> getManagerUsers();
 }

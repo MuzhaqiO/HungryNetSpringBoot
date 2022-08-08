@@ -3,7 +3,6 @@ package com.hungerNet.Hunger.Net.mapper;
 import com.hungerNet.Hunger.Net.dto.restaurantDTO.RestaurantDTO;
 import com.hungerNet.Hunger.Net.model.Restaurant;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

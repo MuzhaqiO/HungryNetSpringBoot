@@ -1,10 +1,10 @@
 package com.hungerNet.Hunger.Net.service;
 
 import com.hungerNet.Hunger.Net.dto.itemDTO.ItemDTO;
+import com.hungerNet.Hunger.Net.dto.itemDTO.UpdateItemDTO;
 import com.hungerNet.Hunger.Net.dto.menuDTO.MenuDTO;
 import com.hungerNet.Hunger.Net.mapper.ItemMapper;
 import com.hungerNet.Hunger.Net.model.Item;
-import com.hungerNet.Hunger.Net.model.Menu;
 import com.hungerNet.Hunger.Net.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,6 @@ public class ItemService {
     public List<ItemDTO> getItemByOrderId(UUID orderId) {
         return itemMapper.toDTOs(itemRepo.getItemsByOrdersOrderId(orderId));
     }
-    public List<ItemDTO> getItems() {
-        return itemMapper.toDTOs(itemRepo.findAll());
-    }
 
     public List<ItemDTO> getItemsByActiveMenu(UUID menuId) {
         MenuDTO menu = menuService.getMenuById(menuId);
@@ -44,8 +41,10 @@ public class ItemService {
         Item createdItem = itemRepo.save(itemMapper.toModel(itemDTO));
         return itemMapper.toDTO(createdItem);
     }
-    public ItemDTO updateItem(ItemDTO itemDTO) {
-        Item item = itemMapper.toModel(itemDTO);
+    public ItemDTO updateItem(UpdateItemDTO updateItemDTO) {
+        Item item = itemRepo.getReferenceById(updateItemDTO.getItemId());
+        item.setItemName(updateItemDTO.getItemName());
+        item.setPrice(updateItemDTO.getPrice());
         itemRepo.save(item);
         return itemMapper.toDTO(item);
     }
