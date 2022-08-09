@@ -1,6 +1,5 @@
 package com.hungerNet.Hunger.Net.dto.menuDTO;
 
-import com.hungerNet.Hunger.Net.dto.itemDTO.ItemDTO;
 import com.hungerNet.Hunger.Net.dto.itemDTO.UpdateItemDTO;
 import com.hungerNet.Hunger.Net.enums.MenuNames;
 import lombok.Data;

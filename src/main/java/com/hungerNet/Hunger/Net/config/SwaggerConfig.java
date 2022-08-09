@@ -6,17 +6,14 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,15 +55,6 @@ public class SwaggerConfig implements WebMvcConfigurer{
 
     @Bean
     public Docket api(){
-//        ParameterBuilder parameterBuilder = new ParameterBuilder();
-//        parameterBuilder.name("Authorization")
-//                .modelRef(new ModelRef("string"))
-//                .parameterType("header")
-//                .description("JWT token")
-//                .required(true)
-//                .build();
-//        List<Parameter> parameters = new ArrayList<>();
-//        parameters.add(parameterBuilder.build());
         return new Docket(DocumentationType.SWAGGER_2)
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
@@ -74,7 +62,6 @@ public class SwaggerConfig implements WebMvcConfigurer{
                 .apis(RequestHandlerSelectors.basePackage("com.hungerNet"))
                 .paths(PathSelectors.any())
                 .build()
-//                .globalOperationParameters(parameters)
                 .apiInfo(metaData());
     }
     private ApiInfo metaData(){

@@ -1,12 +1,10 @@
 package com.hungerNet.Hunger.Net.service;
 
-import com.hungerNet.Hunger.Net.dto.itemDTO.ItemDTO;
 import com.hungerNet.Hunger.Net.dto.menuDTO.MenuDTO;
 import com.hungerNet.Hunger.Net.dto.menuDTO.MenuListDTO;
 import com.hungerNet.Hunger.Net.dto.menuDTO.MenuRequestDTO;
 import com.hungerNet.Hunger.Net.mapper.ItemMapper;
 import com.hungerNet.Hunger.Net.mapper.MenuMapper;
-import com.hungerNet.Hunger.Net.model.Item;
 import com.hungerNet.Hunger.Net.model.Menu;
 import com.hungerNet.Hunger.Net.repository.ItemRepo;
 import com.hungerNet.Hunger.Net.repository.MenuRepo;
@@ -49,19 +47,9 @@ public class MenuService {
 
     public MenuDTO addNewMenu(MenuDTO menuDTO){
         Menu createdMenu = menuRepo.save(menuMapper.toModel(menuDTO));
-        if (!menuDTO.getItems().isEmpty())
-        {
-            menuDTO.getItems().forEach(item ->{
-                ItemDTO itemDTO = new ItemDTO();
-                itemDTO.setItemName(item.getItemName());
-                itemDTO.setPrice(item.getPrice());
-                itemDTO.setMenuId(createdMenu.getMenuId());
-                Item itemdb = itemRepo.save(itemMapper.toModel(itemDTO));
-                item.setItemId(itemdb.getItemId());
-            });
-        }
         return menuMapper.toDTO(createdMenu);
     }
+
     public MenuDTO updateMenu(MenuRequestDTO menuDTO) {
         Menu menu = menuRepo.getReferenceById(menuDTO.getMenuId());
         menu.setStartTime(LocalTime.parse(menuDTO.getStartTime()));
